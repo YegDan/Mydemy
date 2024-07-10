@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+AWS_APP_CLIENT_ID = os.getenv("AWS_APP_CLIENT_ID")
+AWS_USER_POOLS_ID = os.getenv("AWS_USER_POOLS_ID")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +58,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+COGNITO_CONFIG = {
+    #"url": "https://frontenddrfcognito77b3bdee_userpool_77b3bdee-dev.auth.ap-southeast-2.amazoncognito.com/oauth2/token",
+    "app_client_id": AWS_APP_CLIENT_ID,
+    "region": "ca-central-1",
+    "aws_user_pools_id": AWS_USER_POOLS_ID,
+}
 ROOT_URLCONF = 'user.urls'
 
 TEMPLATES = [
